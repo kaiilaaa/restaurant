@@ -55,6 +55,7 @@ if(isset($_GET['edit'])){
       <a class="nav-link" href="index.php">Menu</a>
       <a class="nav-link active" href="manage.php">Manage Products</a>
       <a class="nav-link" href="manage_menu.php">Manage Menus</a>
+      <a class="nav-link" href="manage_menu_products.php">Manage Menu Links</a>
     </div>
   </div>
 </nav>

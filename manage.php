@@ -10,8 +10,14 @@ if(isset($_GET["del"])){
 if(isset($_POST["save"])){
     $name = $_POST['Name'];
     $price = $_POST['Price'];
-    $path = $_POST['ImagePath'];
     $id = $_POST['id'];
+
+    $imagePath = $_POST['old_path'] ?? '';
+    if(!empty($_FILES['ImagePath']['name'])){
+        $targetDir = "images/";
+        $imagePath = $targetDir . basename($_FILES["ImagePath"]["name"]);
+        move_uploaded_file($_FILES["ImagePath"]["tmp_name"], $target);
+    }
 
     if(!empty($id)){
         $sql = "UPDATE products SET Name=?, Price=?, ImagePath=? WHERE ID=?";
@@ -21,6 +27,7 @@ if(isset($_POST["save"])){
         $conn->prepare($sql)->execute([$name, $price, $path]);
     }
     header("Location: manage.php");
+    exit;
 }
 
 // FETCH DATA FOR EDIT
@@ -65,7 +72,10 @@ if(isset($_GET['edit'])){
                     <input type="number" step="0.01" name="Price" class="form-control" placeholder="Price" value="<?= $edit['Price'] ?? '' ?>" required>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="ImagePath" class="form-control" placeholder="Image Filename" value="<?= $edit['ImagePath'] ?? '' ?>">
+                    <input type="file" name="ImagePath" class="form-control" accept="image/*"> 
+                    <?php if($edit): ?>
+                        <small class="text-muted">Current: <?= htmlspecialchars($edit['ImagePath']) ?></small>
+                    <?php endif; ?>
                 </div>
                 <div class="col-md-2">
                     <button type="submit" name="save" class="btn btn-success w-100">Save</button>

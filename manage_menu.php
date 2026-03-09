@@ -56,7 +56,7 @@ if(isset($_GET['edit_id'])){
             <div class="card-body">
                 <form method="post" class="row g-3">
                     <input type="hidden" name="menu_id" value="<?= $edit['ID'] ?? '' ?>">
-                    <div class="col-md-9"><input type="text" name="menu_name" class="form-control" placeholder="e.g., Fries" value="<?= $edit['Name'] ?? '' ?>" required></div>
+                    <div class="col-md-9"><input type="text" name="menu_name" class="form-control" value="<?= $edit['Name'] ?? '' ?>" required></div>
                     <div class="col-md-3"><button type="submit" name="save_menu" class="btn btn-success w-100">Save</button></div>
                 </form>
             </div>

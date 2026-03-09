@@ -29,8 +29,20 @@ $links = $conn->query($query)->fetchAll();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="stylesheet.css">
 </head>
-<body>
+
+<body class="bg-light">
 <div class="container mt-5">
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.php">ADMIN PANEL</a>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link" href="index.php">Menu</a>
+      <a class="nav-link active" href="manage.php">Manage Products</a>
+      <a class="nav-link" href="manage_menu.php">Manage Menus</a>
+      <a class="nav-link" href="manage_menu_products.php">Manage Menu Links</a>
+    </div>
+  </div>
+</nav>
     <h3>Products to Menus</h3>
     <form method="POST" class="row g-3 mb-4">
         <div class="col-md-5">
@@ -63,7 +75,7 @@ $links = $conn->query($query)->fetchAll();
             <tr>
                 <td><?= $l['MenuName'] ?></td>
                 <td><?= $l['ProductName'] ?></td>
-                <td><a href="?del=<?= $l['ID'] ?>" class="btn btn-danger btn-sm">Remove Link</a></td>
+                <td><a href="?del=<?= $l['ID'] ?>" class="btn btn-danger btn-sm">Remove</a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
